@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -22,7 +23,10 @@ export default function RootLayout({
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeRegistry>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <Header />
+          {children}
+          </body>
       </ThemeRegistry>
     </html>
   );

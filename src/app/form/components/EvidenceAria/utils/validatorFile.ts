@@ -1,11 +1,7 @@
-// interface IvalidatorFile {
-//   (files: any, setFileList: any, MAXSIZE: number, setError?: any): void;
-// }
-
 const REGEX =
   /(.jpg|.jpeg|.png|.pdf|.mp3|.ogg|.MOV|.HEIC|.mp4|.wav|.webm|.docx|.xlsx|.pptx|.doc|.xls|.ppt)$/;
 
-const individualValidation = (files: any, MAXSIZE: number) => {
+const individualValidation = (files: File[], MAXSIZE: number) => {
   for (const file of files) {
     if (file.size > MAXSIZE) {
       console.error("Size not valid");
@@ -20,16 +16,16 @@ const individualValidation = (files: any, MAXSIZE: number) => {
 };
 
 const sizeStorageValidation = (
-  fileList: any,
-  incomingFiles: any,
+  fileList: File[],
+  incomingFiles: File[],
   MAXSIZE: number
 ) => {
   const incomingFileSize = incomingFiles.reduce(
-    (total: any, file: any) => total + file.size,
+    (total: number, file: File) => total + file.size,
     0
   );
   const spaceInUse = fileList.reduce(
-    (total: any, file: any) => total + file.size,
+    (total: number, file: File) => total + file.size,
     0
   );
   if (incomingFileSize > MAXSIZE) {
@@ -47,14 +43,14 @@ const sizeStorageValidation = (
 
 // const storageValidation = (fileList, newFiles);
 
-export const validatorFile = (files, fileList, MAXSIZE) => {
-  
-    if (!individualValidation(files, MAXSIZE)) {
+export const validatorFile = (files: File[], storageFile: File[], MAXSIZE: number) => {
+  // d  qebugger;
+  if (!individualValidation(files, MAXSIZE)) {
     console.log("Invalid file size or extension");
     return false;
   }
 
-  if (!sizeStorageValidation(fileList, files, MAXSIZE)) {
+  if (!sizeStorageValidation(storageFile, files, MAXSIZE)) {
     console.log("Total size of new files exceeds the limit");
     return false;
   }

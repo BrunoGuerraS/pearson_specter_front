@@ -1,59 +1,105 @@
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { ButtonCustom } from "@/components/ButtonCustom";
+import { SectionForm } from "@/components/SectionForm";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { useFieldArray, useFormContext } from "react-hook-form";
 
-export const PersonInvolved = ({ register, filds, remove, append }: any) => {
+const inputPersonStyle = {
+  flex: 1,
+  margin: "0 10px",
+};
+
+export const PersonInvolved = () => {
+  const { register } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    name: "person_involved",
+  });
+  const addPerson = () => {
+    append({
+      name: "",
+      last_name: "",
+      role: "",
+      company: "",
+      otros: "",
+    });
+  };
   return (
-    <Box>
-      {filds.map((item: any, index: any) => {
-        return (
-          <Box key={item.id}>
-            <TextField
-              placeholder="name"
-              {...register(`person_involved.${index}.name`)}
-            />
-            <TextField
-              placeholder="last name"
-              {...register(`person_involved.${index}.last_name`)}
-            />
-            <TextField
-              placeholder="role"
-              {...register(`person_involved.${index}.role`)}
-            />
-            <TextField
-              placeholder="company"
-              {...register(`person_involved.${index}.company`)}
-            />
-            <TextField
-              placeholder="otros"
-              {...register(`person_involved.${index}.otros`)}
-            />
-            <Button
-              onClick={() => {
-                if (filds.length > 1) {
-                  remove(index);
-                }
+    <SectionForm TitleSection={'INFORMACIÓN SOBRE EL REPORTE*'}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {fields.map((item: any, index: any) => {
+          return (
+            <Box
+              key={item.id}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                marginBottom: "10px",
+                // border: "1px solid #000",
               }}
             >
-              <DeleteIcon fontSize="large" color="error" />
-            </Button>
-          </Box>
-        );
-      })}
-
-      <Button
-        onClick={() =>
-          append({
-            name: "",
-            last_name: "",
-            role: "",
-            company: "",
-            otros: "",
-          })
-        }
-      >
-        <AddCircleIcon fontSize="large" color="primary" />
-      </Button>
-    </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  // border: "1px solid #000",
+                }}
+              >
+                <Typography sx={{ marginLeft: "10px" }}>
+                  Person {index + 1}
+                </Typography>
+                <Button
+                  onClick={() => {
+                    if (fields.length > 1) {
+                      remove(index);
+                    }
+                  }}
+                >
+                  <DeleteIcon fontSize="large" color="error" />
+                </Button>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  sx={inputPersonStyle}
+                  placeholder="name"
+                  variant="standard"
+                  {...register(`person_involved.${index}.name`)}
+                />
+                <TextField
+                  sx={inputPersonStyle}
+                  placeholder="last name"
+                  variant="standard"
+                  {...register(`person_involved.${index}.last_name`)}
+                />
+                <TextField
+                  sx={inputPersonStyle}
+                  placeholder="role"
+                  variant="standard"
+                  {...register(`person_involved.${index}.role`)}
+                />
+                <TextField
+                  sx={inputPersonStyle}
+                  placeholder="company"
+                  variant="standard"
+                  {...register(`person_involved.${index}.company`)}
+                />
+              </Box>
+            </Box>
+          );
+        })}
+        <ButtonCustom textButton={"Add Person"} addfunction={addPerson}/>
+      </Box>
+    </SectionForm>
   );
 };

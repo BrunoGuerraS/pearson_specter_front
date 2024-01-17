@@ -1,0 +1,3 @@
+interface IPlace {
+    name: string
+}
