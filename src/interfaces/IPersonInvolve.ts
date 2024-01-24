@@ -3,5 +3,4 @@ interface IPersonInvolved {
   last_name: string;
   role: string;
   company: string;
-  otros: string;
 }

@@ -11,7 +11,7 @@ import { useFormContext } from "react-hook-form";
 export const ContactOptions = () => {
   const { register } = useFormContext();
   return (
-    <SectionForm TitleSection={"OPCIONES DE CONTACTO"}>
+    <SectionForm titleSection={"OPCIONES DE CONTACTO"}>
       <Box>
         <Typography variant="body1">
           ¿Cuál es su relación con la empresa?
@@ -19,7 +19,6 @@ export const ContactOptions = () => {
         <TextField {...register("companyRelationship")} />
         <Typography variant="body1">¿Desea mantener su anonimato?</Typography>
         <FormControlLabel
-          required
           control={<Checkbox />}
           label="Sí, deseo mantener mi anonimato"
         />

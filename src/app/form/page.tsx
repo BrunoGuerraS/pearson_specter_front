@@ -1,8 +1,9 @@
 "use client";
+import { AxiosInterceptor } from "@/interceptors/axios.interceptor";
 import { registerReport } from "@/service/handlerData";
 import { Button, Stack } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { reportFormValuesToRPersistAdapter } from "./adapters/reportAdapter";
+import { ContactOptions } from "./components/ContactOptions";
 import { DateEvent } from "./components/DateEvent";
 import { Description } from "./components/Description";
 import { EvidenceAria } from "./components/EvidenceAria/EvidenceAria";
@@ -12,29 +13,51 @@ import { Places } from "./components/Places";
 import { TypeReport } from "./components/TypeReport";
 import { reportFormConfig } from "./config/reportFormConfig";
 
+AxiosInterceptor();
+
 export default function Form() {
   const method = useForm(reportFormConfig);
   const { handleSubmit, reset } = method;
 
   const onSubmit = async (data: any) => {
-    const parseData = reportFormValuesToRPersistAdapter(data)
+    // const parseData = reportFormValuesToRPersistAdapter(data);
     try {
-      // console.log("parseData", parseData);
       console.log("data", data);
-      const res = await registerReport(parseData)
+      const res = await registerReport(data);
       console.log(res);
-      reset();
     } catch (error) {
       console.log(error);
-      reset();
     }
+    console.log("data", data);
     reset();
   };
 
   return (
     <FormProvider {...method}>
-      <form style={{margin: "40px 0"}} onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Stack
+          spacing={3}
+          sx={{
+            maxWidth: "980px",
+            marginTop: {
+              xs: "20px",
+              sm: "50px",
+            },
+            width: {
+              sm: "70%",
+            },
+            padding: {
+              xs: "0 20px",
+              sm: "0",
+            },
+          }}
+        >
           <TypeReport />
           <PersonInvolved />
           <Places />
@@ -42,7 +65,7 @@ export default function Form() {
           <Description />
           <EvidenceAria />
           <OptionalQuestions />
-          {/* <ContactOptions /> */}
+          <ContactOptions />
           <Button type="submit" variant="contained">
             SEND
           </Button>

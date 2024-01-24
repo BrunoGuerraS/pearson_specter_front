@@ -1,50 +1,45 @@
 "use client";
+import { ErrorAlert } from "@/components/ErrorAlert";
 import { SectionForm } from "@/components/SectionForm";
-import { getTypeReport } from "@/service/handlerData";
+import { ITypeReport } from "@/interfaces/ITypeReport";
 import { InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import { useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useFetchTypeReport } from "../hooks/useFetchTypeReport";
 
-export const TypeReport = () => {
+export const TypeReport: FC = () => {
   const { register } = useFormContext();
-  const [typeRerportList, setTypeReportList] = useState([]);
-  const [typeReport, setTypeReport] = useState("-");
+  const { typesReportList } = useFetchTypeReport();
+  const [currentTypeReport, setCurrentTypeReport] = useState<string>("");
   const handleChange = (event: SelectChangeEvent) => {
-    setTypeReport(event.target.value as string);
+    setCurrentTypeReport(event.target.value as string);
   };
-  useEffect(() => {
-    const getReport = async () => {
-      const data = await getTypeReport();
-      setTypeReportList(data);
-    };
-    getReport();
-  }, []);
-  return (
-    <SectionForm TitleSection={"INFORMACIÓN SOBRE EL REPORTE*"}>
-      <FormControl variant="standard" fullWidth>
-        <InputLabel id="type_report_label">Type Report</InputLabel>
-        <Select
-          label="Age"
-          {...register("type_report")}
-          labelId="type_report_label"
-          value={typeReport}
-          onChange={handleChange}
-          sx={{
-            minWidth: "200px"
-          }}
-        >
-          <MenuItem value="-">-</MenuItem>
 
-          {typeRerportList &&
-            typeRerportList.map((item: any, index: number) => {
+  return (
+    <SectionForm titleSection={"INFORMACIÓN SOBRE EL REPORTE*"}>
+      <FormControl variant="standard" fullWidth>
+        <InputLabel>Type Report</InputLabel>
+        <Select
+          {...register("type_report", {
+            validate: (value) => {
+              return value !== 0;
+            },
+          })}
+          label="Type Report"
+          value={currentTypeReport}
+          onChange={handleChange}
+        >
+          {typesReportList &&
+            typesReportList.map((typeReport: ITypeReport) => {
               return (
-                <MenuItem key={index} value={item.id}>
-                  {item.name}
+                <MenuItem key={typeReport.id} value={typeReport.id}>
+                  {typeReport.name}
                 </MenuItem>
               );
             })}
         </Select>
+        <ErrorAlert inputName={"type_report"} />
       </FormControl>
     </SectionForm>
   );

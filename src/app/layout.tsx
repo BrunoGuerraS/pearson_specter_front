@@ -22,12 +22,12 @@ export default function RootLayout({
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeRegistry>
-        <body className={inter.className}>
-          <Header />
-          {children}
+        <ThemeRegistry>
+          <body className={inter.className}>
+            <Header />
+            {children}
           </body>
-      </ThemeRegistry>
+        </ThemeRegistry>
     </html>
   );
 }

@@ -28,7 +28,7 @@ export const EvidenceAria: FC = () => {
   };
 
   return (
-    <SectionForm TitleSection={"EVIDENCIAS"}>
+    <SectionForm titleSection={"EVIDENCIAS"}>
       <DragNDropArea
         setStorageFile={setStorageFile}
         setValue={setValue}

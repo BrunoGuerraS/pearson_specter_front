@@ -1,22 +1,26 @@
+import axios from "axios";
 const url = "http://localhost:3003/api/v1";
 
-export const getTypeReport = async () => {
-  const response = await fetch(`${url}/typeReports`);
-  const typeReportList = await response.json();
-  return typeReportList;
+export const getTypeReport = () => {
+  return axios.get(`${url}/typeReports`);
 };
 
 export const registerReport = async (data: any) => {
-    function showFormDataValues(parseData: any) {
-      for (let pair of parseData.entries()) {
-        console.log(`Key: ${pair[0]}, Value: ${pair[1]}`);
-      }
-    }
-    showFormDataValues(data);
-  const response = await fetch(`${url}/reports`, {
-    method: "POST",
-    body: data,
+  const response = await axios.post(`${url}/reports`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
   });
-  const report = await response.json();
-  return report;
+  const confirmation = response.data
+  return confirmation
+  // const response = await fetch(`${url}/reports`, {
+  //   method: "POST",
+  //   body: data,
+  // });
+  // const report = await response.json();
+  // return report;
+};
+
+export const getReportById = (id: string) => {
+  return axios.get(`${url}/reports/${id}`);
 };

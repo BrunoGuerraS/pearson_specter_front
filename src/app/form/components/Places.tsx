@@ -1,8 +1,16 @@
 import { ButtonCustom } from "@/components/ButtonCustom";
+import { DeleteSection } from "@/components/DeleteSection";
+import { ErrorAlert } from "@/components/ErrorAlert";
 import { SectionForm } from "@/components/SectionForm";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { schemaPlace } from "@/schema/place.schema";
+import { Box, Grid, TextField } from "@mui/material";
 import { useFieldArray, useFormContext } from "react-hook-form";
+
+const styleBox = {
+  display: "flex",
+  justifyContent: "flex-start",
+  alignItems: "center",
+};
 
 export const Places = () => {
   const { register } = useFormContext();
@@ -10,46 +18,38 @@ export const Places = () => {
     name: "place",
   });
   const addPlace = () => {
-    append({
-      name: "",
-    });
+    append(schemaPlace);
   };
   return (
-    <SectionForm TitleSection={"IDENTIFICACIÓN DEL LUGAR DEL SUCESO*"}>
+    <SectionForm titleSection={"IDENTIFICACIÓN DEL LUGAR DEL SUCESO*"}>
       <Box>
         {fields.map((item: any, index: number) => {
           return (
-            <Box key={item.id} sx={{}}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  // border: "1px solid #000",
-                }}
-              >
-                <Typography sx={{ marginLeft: "10px" }}>
-                  Place {index + 1}
-                </Typography>
-                <Button
-                  onClick={() => {
-                    if (fields.length > 1) {
-                      remove(index);
-                    }
-                  }}
-                >
-                  <DeleteIcon fontSize="large" color="error" />
-                </Button>
-              </Box>
-              <TextField
-                placeholder="name"
-                {...register(`place.${index}.name`)}
+            <Box key={item.id}>
+              <DeleteSection
+                fields={fields}
+                title={"Place"}
+                index={index}
+                remove={remove}
               />
-             
+              {Object.keys(schemaPlace).map((key) => {
+                return (
+                  <Grid key={key}>
+                    <TextField
+                      {...register(`place.${index}.${key}`, {
+                        required: true,
+                      })}
+                      label={key}
+                      variant="standard"
+                    />
+                  </Grid>
+                );
+              })}
             </Box>
           );
         })}
         <ButtonCustom textButton={"Add place"} addfunction={addPlace} />
+        <ErrorAlert inputName={"place"} />
       </Box>
     </SectionForm>
   );

@@ -6,7 +6,7 @@ export const Description = () => {
   const { register } = useFormContext();
 
   return (
-    <SectionForm TitleSection={"DESCRIPCIÓN DEL SUCESO*"}>
+    <SectionForm titleSection={"DESCRIPCIÓN DEL SUCESO*"}>
       <Box>
         <TextField
           {...register("description")}
