@@ -1,18 +1,16 @@
 interface ICreateReport {
-    date_start: Date
-	date_end: Date
-	description: string
-	answer1: string
-	answer2: string
-	answer3: string
-	answer4: string
-	answer5: string
-	answer6: string
-	answer7: string
-	answer8: string
-	evidence: []
-	type_report: number
-	person_involved: IPersonInvolved[]
-	place: IPlace[]
-	status : Buffer
+    type_report: number | string
+    person_involved: IPersonInvolved[] | null | undefined
+    place: IPlace[] | null | undefined
+    date_start: string | null
+	date_end: string | null
+	description: string | null | undefined
+	answer1: string | null | undefined
+	answer2: string | null | undefined
+	answer3: string | null | undefined
+	answer4: string | null | undefined
+	answer5: string | null | undefined
+	answer6: string | null | undefined
+	answer7: string | null | undefined
+	evidence: File[] | null | undefined,
 }

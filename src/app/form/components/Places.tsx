@@ -2,7 +2,7 @@ import { ButtonCustom } from "@/components/ButtonCustom";
 import { DeleteSection } from "@/components/DeleteSection";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { SectionForm } from "@/components/SectionForm";
-import { schemaPlace } from "@/schema/place.schema";
+import { placeSchema } from "@/schema/place.schema";
 import { Box, Grid, TextField } from "@mui/material";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
@@ -18,7 +18,7 @@ export const Places = () => {
     name: "place",
   });
   const addPlace = () => {
-    append(schemaPlace);
+    append(placeSchema);
   };
   return (
     <SectionForm titleSection={"IDENTIFICACIÓN DEL LUGAR DEL SUCESO*"}>
@@ -32,7 +32,7 @@ export const Places = () => {
                 index={index}
                 remove={remove}
               />
-              {Object.keys(schemaPlace).map((key) => {
+              {Object.keys(placeSchema).map((key) => {
                 return (
                   <Grid key={key}>
                     <TextField

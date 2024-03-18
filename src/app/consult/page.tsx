@@ -2,16 +2,16 @@
 import { getReportById } from "@/service/handlerData";
 import SearchIcon from "@mui/icons-material/Search";
 import {
-    Box,
-    IconButton,
-    InputBase,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+  Box,
+  IconButton,
+  InputBase,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
@@ -45,10 +45,16 @@ export default function Consult() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => {
+    console.log("data", data)
     try {
-      getReportById(data.search).then((res) => {
-        setReport(res.data);
-      });
+      const getData = async ()=> {
+         const res = await getReportById(data.search)
+         const result = res.data
+         console.log("result",result) 
+         return result
+      }
+      const res = getData()
+      // console.log(res)
     } catch (error) {
       console.log(error);
     }

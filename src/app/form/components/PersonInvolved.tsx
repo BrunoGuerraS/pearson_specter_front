@@ -2,10 +2,10 @@ import { ButtonCustom } from "@/components/ButtonCustom";
 import { DeleteSection } from "@/components/DeleteSection";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { SectionForm } from "@/components/SectionForm";
-import { schemaPersonInvolved } from "@/schema/personInvolved.schema";
+import { PersonInvolvedSchema } from "@/schema/personInvolved.schema";
 import { Box, TextField } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 const inputPersonStyle = {
@@ -18,8 +18,12 @@ export const PersonInvolved: FC = () => {
   const { fields, append, remove } = useFieldArray({
     name: "person_involved",
   });
+  console.log("PersonInvolvedSchema", PersonInvolvedSchema);
+  useEffect(() => {
+    console.log("fields", fields);
+  }, [fields]);
   const addPerson = () => {
-    append(schemaPersonInvolved);
+    append(PersonInvolvedSchema);
   };
   return (
     <SectionForm titleSection={"INFORMACIÓN SOBRE EL REPORTE*"}>
@@ -34,7 +38,10 @@ export const PersonInvolved: FC = () => {
                 remove={remove}
               />
               <Grid container spacing={2}>
-                {Object.keys(schemaPersonInvolved).map((key) => {
+                {
+                PersonInvolvedSchema &&
+                Object.keys(PersonInvolvedSchema).map((key) => {
+                  console.log("key", key);
                   return (
                     <Grid key={key} xs={12} sm={3}>
                       <TextField

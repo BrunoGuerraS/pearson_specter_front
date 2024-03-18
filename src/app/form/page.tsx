@@ -1,8 +1,12 @@
 "use client";
-import { AxiosInterceptor } from "@/interceptors/axios.interceptor";
+// import { AxiosInterceptor } from "@/interceptors/axios.interceptor";
+import { PersonInvolvedSchema } from "@/schema/personInvolved.schema";
+import { placeSchema } from "@/schema/place.schema";
 import { registerReport } from "@/service/handlerData";
 import { Button, Stack } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
+import { reportFormValuesToRPersistAdapter } from "./adapters/reportAdapter";
 import { ContactOptions } from "./components/ContactOptions";
 import { DateEvent } from "./components/DateEvent";
 import { Description } from "./components/Description";
@@ -11,25 +15,33 @@ import { OptionalQuestions } from "./components/OptionalQuestions";
 import { PersonInvolved } from "./components/PersonInvolved";
 import { Places } from "./components/Places";
 import { TypeReport } from "./components/TypeReport";
-import { reportFormConfig } from "./config/reportFormConfig";
 
-AxiosInterceptor();
+// AxiosInterceptor();
 
 export default function Form() {
-  const method = useForm(reportFormConfig);
+  const router = useRouter();
+  const method = useForm({
+    defaultValues: {
+      person_involved: [PersonInvolvedSchema],
+      place: [placeSchema],
+    },
+  });
   const { handleSubmit, reset } = method;
 
   const onSubmit = async (data: any) => {
-    // const parseData = reportFormValuesToRPersistAdapter(data);
+    const parseData = reportFormValuesToRPersistAdapter(data);
     try {
       console.log("data", data);
-      const res = await registerReport(data);
-      console.log(res);
+      const res = await registerReport(parseData);
+      if (res.status === 201) {
+        const id = res.data.newReport.id_client;
+        router.push(`/success/${id}`);
+      }
     } catch (error) {
       console.log(error);
     }
     console.log("data", data);
-    reset();
+    // reset();
   };
 
   return (

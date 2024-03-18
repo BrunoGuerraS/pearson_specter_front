@@ -1,3 +1,3 @@
-export const schemaPlace = {
+export const placeSchema = {
     name: ""
 }
