@@ -7,3 +7,7 @@
 .customhegiht{
   height: calc(100vh - 52px);
 }
+
+body{
+  background-color: #f0ebe9 !important;
+}
