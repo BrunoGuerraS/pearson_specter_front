@@ -1,9 +1,21 @@
 import { createTheme } from "@mui/material/styles";
-import { Roboto } from "next/font/google";
+import { Roboto, Rosario, Rosarivo } from "next/font/google";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
+  display: "swap",
+});
+
+const rosario = Rosario({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin-ext"],
+  display: "swap",
+});
+
+const rosarivo = Rosarivo({
+  weight: ["400"],
+  subsets: ["latin-ext"],
   display: "swap",
 });
 
@@ -18,9 +30,13 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: [
+      roboto.style.fontFamily,
+      rosarivo.style.fontFamily,
+      rosario.style.fontFamily,
+    ].join(","),
   },
- 
+
   components: {
     MuiAlert: {},
     MuiGrid: {

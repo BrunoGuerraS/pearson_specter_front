@@ -1,174 +1,17 @@
 // import Container from "@mui/material/Container";
-import Wsp from "@/assets/icons/wsp.png";
-import Justice from "@/assets/justice2.jpg";
-import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
-import { Box, Button, Container, Typography } from "@mui/material";
-import Image from "next/image";
+// import Justice from "@/assets/justice2.jpg";
+// import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+// import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
+import { Box, Container, Typography } from "@mui/material";
 
 export default function Home() {
   return (
-    // <Grid
-    //   container
-    //   rowSpacing={2}
-    //   sx={{
-    //     width: "80%",
-    //     margin: "0 auto 50px auto",
-    //     padding: "0 ",
-    //   }}
-    //   maxWidth={800}
-    // >
-    //   <Grid item xs={12}>
-    //     <Typography
-    //       sx={{
-    //         textAlign: "center",
-    //         width: "100%",
-    //         fontWeight: "bold",
-    //         fontSize: {
-    //           xs: "2rem",
-    //           sm: "3rem",
-    //           md: "4rem",
-    //           lg: "5rem",
-    //           xl: "6rem",
-    //         },
-    //         marginTop: {
-    //           sm: "30px",
-    //         },
-    //       }}
-    //     >
-    //       Pearson Specter
-    //     </Typography>
-    //   </Grid>
-    //   <Grid item xs={12}>
-    //     <Typography
-    //       sx={{
-    //         typography: { xs: "body2", sm: "body1" },
-    //         margin: {
-    //           xs: "10px 0 30px 0",
-    //           sm: "30px 0",
-    //         },
-    //       }}
-    //     >
-    //       Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-    //       archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-    //       las industrias desde el año 1500, cuando un impresor (N. del T.
-    //       persona que se dedica a la imprenta)
-    //     </Typography>
-    //   </Grid>
-    //   <Grid item xs={12} sm={6}>
-    //     <Box
-    //       sx={{
-    //         height: "100%",
-    //         display: "flex",
-    //         flexDirection: "column",
-    //         justifyContent: "space-between",
-    //         alignItems: "center",
-    //         marginRight: { sm: "30px " },
-    //       }}
-    //     >
-    //       <Box sx={{}}>
-    //         <Typography
-    //           sx={{
-    //             fontWeight: "bold",
-    //             textAlign: "center",
-    //             typography: { xs: "body1", sm: "h6" },
-    //           }}
-    //         >
-    //           Register Report
-    //         </Typography>
-    //         <Typography
-    //           sx={{
-    //             typography: { xs: "body2", sm: "body1" },
-    //             margin: "20px 0",
-    //           }}
-    //         >
-    //           Lorem Ipsum es simpleml año Lorem Ipsum es simplemente el texto de
-    //           reas desde el año 1500, cuando un impresor (N. del T. persona que
-    //           se dedica a la imprenta) desconocido usó una galería de textos y
-    //           los mezcló de 1500{" "}
-    //         </Typography>
-    //       </Box>
-    //       <Button
-    //         variant="contained"
-    //         sx={{
-    //           width: {
-    //             xs: "100%",
-    //             sm: "50%",
-    //           },
-    //         }}
-    //       >
-    //         <Link
-    //           style={{
-    //             listStyle: "none",
-    //             color: "inherit",
-    //             textDecoration: "none",
-    //           }}
-    //           href="/form"
-    //         >
-    //           Register
-    //         </Link>
-    //       </Button>
-    //     </Box>
-    //   </Grid>
-    //   <Grid item xs={12} sm={6}>
-    //     <Box
-    //       sx={{
-    //         display: "flex",
-    //         height: "100%",
-    //         flexDirection: "column",
-    //         justifyContent: "space-between",
-    //         alignItems: "center",
-    //         marginLeft: { sm: "30px " },
-    //       }}
-    //     >
-    //       <Box sx={{}}>
-    //         <Typography
-    //           sx={{
-    //             fontWeight: "bold",
-    //             textAlign: "center",
-    //             typography: { xs: "body1", sm: "h6" },
-    //           }}
-    //         >
-    //           Consult Report
-    //         </Typography>
-    //         <Typography
-    //           sx={{
-    //             typography: { xs: "body2", sm: "body1" },
-    //             margin: "20px 0",
-    //           }}
-    //         >
-    //           Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-    //           archivos de texto. Lorem Ipsum ha sido el texto de relleno
-    //         </Typography>
-    //       </Box>
-    //       <Button
-    //         variant="contained"
-    //         sx={{
-    //           width: {
-    //             xs: "100%",
-    //             sm: "50%",
-    //           },
-    //         }}
-    //       >
-    //         <Link
-    //           href={"/consult"}
-    //           style={{
-    //             listStyle: "none",
-    //             color: "inherit",
-    //             textDecoration: "none",
-    //           }}
-    //         >
-    //           Consult
-    //         </Link>
-    //       </Button>
-    //     </Box>
-    //   </Grid>
-    // </Grid>
     <>
       <Container
         sx={{
-          width: "100%",
+          // minWidth: "320px",
+          px: { xs: "0", sm: "10px" },
+          width: { xs: "100%", sm: "100%", md: "100%" },
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
@@ -176,27 +19,36 @@ export default function Home() {
       >
         <Box
           sx={{
-            marginTop: "50px",
             display: "flex",
-            alignItems: "center",
             flexDirection: "column",
+            alignItems: "start",
+            border: "1px solid red",
           }}
         >
-          <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-            Pearson Specter{" "}
+          <Typography
+            sx={{
+              typography: { xs: "h4", sm: "h3", md: "h2" },
+              fontFamily: "Rosarivo !important",
+            }}
+          >
+            Pearson Specter
           </Typography>
-          <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h2"
+            fontWeight={"bold"}
+            sx={{
+              typography: { xs: "h4", sm: "h3", md: "h2" },
+              fontFamily: "Rosarivo !important",
+            }}
+          >
             Ethical Legal Area
           </Typography>
         </Box>
-        <Box
+        {/* <Box
           position={"relative"}
           width={"100%"}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            // border: "1px solid red",
-          }}
+          display={"flex"}
+          justifyContent={"center"}
         >
           <Box position={"absolute"} width={"150px"} left={"90px"} top={"50%"}>
             <CheckCircleOutlineIcon fontSize="large" />
@@ -321,53 +173,52 @@ export default function Home() {
               Consult
             </Button>
           </Box>
-        </Box>
+        </Box> */}
       </Container>
-      <Box
+      {/* <Box
         height={"300px"}
         sx={{
           background: "#251c1b",
           color: "white",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            mb: "40px",
-          }}
-        >
+        <Typography variant="h2" fontWeight={"bold"}>
           Do We need to talk?
         </Typography>
         <Box
-          // height={"200px"}
-          // width={"60%"}
           display={"flex"}
-          alignItems={"start"}
+          flexDirection={"column"}
+          alignItems={"center"}
           justifyContent={"space-around"}
-          // flexDirection={"column"}
-          // border={"1px solid red"}
+          ml={"40px"}
         >
-          <Typography variant="h5" mx={"20px"}>CONTACT US:</Typography>
-          {/* <Box mx={"50px"}>
-            <Image src={Arrow} alt="contact us" width={100}/>
-          </Box> */}
-          <Box display={"flex"}>
-            <Box mx={"10px"}>
+          <Typography variant="h5" mb={"20px"}>
+            CONTACT US:
+          </Typography>
+
+          <Box display={"flex"} flexDirection={"column"} ml={"20px"}>
+            <Box>
               <Typography>By Whatsapp</Typography>
               <Box
                 display={"flex"}
                 justifyContent={"center"}
                 alignItems={"center"}
               >
-                <Image src={Wsp} alt="whatsapp" width={50} />
+                <Image
+                  src={Wsp}
+                  alt="whatsapp"
+                  width={50}
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
                 <Typography>+57 300 123 4567</Typography>
               </Box>
             </Box>
-            <Box mx={"10px"}>
+            <Box>
               <Typography mb={"10px"}>By Email</Typography>
               <Box
                 display={"flex"}
@@ -376,14 +227,14 @@ export default function Home() {
               >
                 <AlternateEmailOutlinedIcon
                   fontSize="large"
-                  sx={{ ml: "5px" }}
+                  sx={{ ml: "10px" }}
                 />
                 <Typography ml={"10px"}>etical@psfirm.com</Typography>
               </Box>
             </Box>
           </Box>
         </Box>
-      </Box>
+      </Box> */}
     </>
   );
 }
